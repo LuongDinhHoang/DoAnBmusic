@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/like_song"
+        android:title="@string/like_song" />
+    <item
+        android:id="@+id/dis_like_song"
+        android:title="@string/dis_like_song" />
+    <item
+        android:id="@+id/delete_song"
+        android:title="@string/delete" />
+
+    <item
+        android:id="@+id/add_playlist_song"
+        android:title="@string/add_playlist"
+        android:visible="false"/>
+</menu>

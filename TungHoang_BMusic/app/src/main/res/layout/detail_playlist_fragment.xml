@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:text="Tên playlist...."
+        android:textStyle="italic"
+        android:id="@+id/title_playlist"
+        android:layout_marginBottom="10dp"
+        android:textSize="20sp"
+        android:paddingStart="10dp"
+        android:paddingLeft="10dp"
+        android:paddingTop="20dp"
+        android:background="@drawable/background_linear"
+        android:textColor="@color/text_color"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:id="@+id/notify_empty"
+        android:visibility="gone"
+        android:layout_below="@+id/title_playlist"
+        android:textSize="15sp"
+        android:layout_marginStart="10dp"
+        android:textColor="@color/text_color"/>
+    <LinearLayout
+        android:id="@+id/add_song_playlist_button"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        android:layout_below="@+id/notify_empty"
+        android:background="@drawable/background_playlist">
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/new_playlist_button"
+            android:src="@drawable/ic_add"
+            android:background="@null"
+            android:tint="@color/icon_color"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="Thêm bài hát mới"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textColor="@color/text_color"
+            android:textSize="17sp"/>
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_song_in_playlist"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/title_playlist" />
+
+</RelativeLayout>

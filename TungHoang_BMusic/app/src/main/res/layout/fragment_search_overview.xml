@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.search.SearchFragment"
+    android:background="@drawable/background_recyclerview">
+
+    <androidx.appcompat.widget.SearchView
+        android:layout_width="match_parent"
+        android:layout_height="47dp"
+        android:layout_alignParentTop="true"
+        android:id="@+id/search_view"
+        android:layout_marginBottom="15dp"
+        android:layout_margin="15dp"
+        app:iconifiedByDefault="false"
+        app:queryBackground="@null"
+        android:background="@drawable/shapebgsearch"
+        app:submitBackground="@null"
+        app:queryHint="@string/search_hint"
+        android:inputType="textCapSentences"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_podcasts"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/search_view" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_search"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/search_view"
+        android:visibility="invisible"/>
+
+</RelativeLayout>

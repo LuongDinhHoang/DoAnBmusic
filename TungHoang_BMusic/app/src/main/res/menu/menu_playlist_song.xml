@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/rename_playlist"
+        android:icon="@drawable/ic_recent_black_24dp"
+        android:title="Sửa tên playlist" />
+
+    <item
+        android:id="@+id/delete_playlist"
+        android:icon="@drawable/ic_recent_black_24dp"
+        android:title="Xoá playlist" />
+
+    <item
+        android:id="@+id/add_song_to_playlist"
+        android:title="@string/add_song_to_playlist"/>
+
+</menu>

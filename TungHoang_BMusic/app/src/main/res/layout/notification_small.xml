@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="78dp">
+
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="9dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginRight="9dp"
+        android:id="@+id/notify_image"
+        android:src="@drawable/ic_baseline_library_music_24" />
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
+
+    <ImageButton
+        android:id="@+id/prevNoti"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:background="@null"
+        android:src="@drawable/ic_skip_previous_black_24dp" />
+
+    <FrameLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:id="@+id/play">
+
+        <ImageButton
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:src="@drawable/ic_pause_circle_filled_orange_24dp" />
+
+        <ImageView
+            android:id="@+id/playNoti"
+            android:layout_width="29dp"
+            android:layout_height="29dp"
+            android:scaleType="fitXY"
+            android:layout_gravity="center" />
+    </FrameLayout>
+
+
+    <ImageButton
+        android:id="@+id/nextNoti"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:background="@null"
+        android:src="@drawable/ic_skip_next_black_24dp" />
+
+
+</LinearLayout>

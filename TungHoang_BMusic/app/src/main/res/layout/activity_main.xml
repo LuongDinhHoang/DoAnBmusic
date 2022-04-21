@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
+        android:background="?android:attr/windowBackground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:menu="@menu/bottom_nav_menu" />
+
+    <fragment
+        android:id="@+id/nav_host_fragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/layout_play_home"
+        android:layout_marginBottom="0dp"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/mobile_navigation" />
+
+    <LinearLayout
+        android:id="@+id/layout_play_home"
+        android:layout_width="match_parent"
+        android:layout_height="62dp"
+        android:layout_above="@+id/nav_view"
+        android:orientation="horizontal"
+        android:background="@drawable/background_linear"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/imgMainSong"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_baseline_library_music_24"
+            android:padding="8dp"
+            android:layout_gravity="center"
+            android:background="@null"
+            />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center">
+            <TextView
+                android:id="@+id/tvMainNameSong"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:gravity="bottom"
+                android:singleLine="true"
+                android:ellipsize="marquee"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:scrollHorizontally="true"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:paddingLeft="10dp"
+                android:text="NameSong"
+                android:textColor="@color/text_color"/>
+
+            <TextView
+                android:id="@+id/tvMainArtist"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:ellipsize="end"
+                android:gravity="top"
+                android:maxLines="1"
+                android:textSize="12sp"
+                android:paddingLeft="10dp"
+                android:text="artist"
+                android:textColor="@color/text_color"/>
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/btnMainPlay"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="45dp"
+            android:src="@drawable/ic_play_select"
+            android:layout_gravity="center" />
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="blue">#CCFFCC</color>
+    <color name="ccnews_bg">#FFFFFF</color>
+    <color name="ccnews_seekable_bar">#B7B7B7</color>
+
+    <color name="text_color">#190707</color>
+    <color name="pink">#faefeb</color>
+    <color name="pink_playlist">#faefeb</color>
+
+    <color name="toolbar_color">#371015</color>
+    <color name="toolbar_color_test">#fcfbf9</color>
+
+    <color name="top_background_recyclerview">#fcfbf9</color>
+    <color name="bottom_background_recyclerview">#fcfbf9</color>
+    <color name="center_background_recyclerview">#f7e4dd</color>
+
+    <color name="icon_color">#000000</color>
+
+    <color name="liked_color">#FB0000</color>
+
+    <color name="name_song">#222222</color>
+    <color name="duration">#505050</color>
+
+    <color name="bottom_layout">#aaf8f7f6</color>
+    <color name="progress_tint">#FF5722</color>
+    <color name="thum_tint">#FF5722</color>
+    <color name="top_layout">#aaf8f7f6</color>
+
+    <color name="icon_click_color">#FF5722</color>
+</resources>

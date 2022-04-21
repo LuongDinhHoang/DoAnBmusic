@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/background_process_seekbar"
+        android:drawable="@drawable/draw_for_color_process_seekbar"/>
+    <item android:id="@+id/process">
+        <scale android:scaleWidth="100%">
+            <selector>
+                <item android:drawable="@drawable/draw_for_process"/>
+            </selector>
+        </scale>
+    </item>
+</layer-list>

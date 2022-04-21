@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="ccnews_bg">#2A2B2B</color>
+    <color name="text_color">#FFFFFF</color>
+    <color name="pink">#292929</color>
+    <color name="pink_playlist">#371015</color>
+    <color name="icon_color">#FFFFFF</color>
+
+    <color name="liked_color">#FB0000</color>
+
+    <color name="name_song">#FFFFFF</color>
+    <color name="duration">#F2F2F2</color>
+
+    <color name="toolbar_color">#fcfbf9</color>
+    <color name="toolbar_color_test">#371015</color>
+
+    <color name="top_background_recyclerview">#371015</color>
+    <color name="bottom_background_recyclerview">#071015</color>
+    <color name="center_background_recyclerview">#171015</color>
+
+    <color name="bottom_layout">#aa141217</color>
+    <color name="progress_tint">#F44C36</color>
+    <color name="thum_tint">#F44C36</color>
+    <color name="top_layout">#aa371015</color>
+
+    <color name="icon_click_color">#FF5722</color>
+</resources>
