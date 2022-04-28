@@ -41,7 +41,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_below="@id/line4"
+        android:layout_below="@id/line5"
         android:orientation="horizontal"
         android:id="@+id/line">
 
@@ -66,11 +66,16 @@
             android:id="@+id/switch_night"/>
 
     </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#000"
+        android:layout_below="@id/line5"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:orientation="horizontal"
-        android:layout_below="@id/line"
+        android:layout_below="@id/line4"
         android:id="@+id/line5">
         <TextView
             android:id="@+id/manager_acc1"

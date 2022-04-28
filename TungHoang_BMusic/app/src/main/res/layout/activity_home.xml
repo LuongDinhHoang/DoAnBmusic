@@ -6,17 +6,20 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
+    android:background="@drawable/backgound"
     tools:context=".auth.HomeAuthActivity">
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="SignUp"
+        android:background="#80DDDDD8"
         android:onClick="onSignUp"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Login"
+        android:background="#80DDDDD8"
         android:onClick="onLogin"/>
 
 </LinearLayout>
