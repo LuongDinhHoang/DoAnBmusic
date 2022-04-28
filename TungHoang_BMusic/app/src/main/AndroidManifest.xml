@@ -36,7 +36,9 @@
         <activity android:name="com.example.tung_hoang_bmusic.auth.LoginActivity"/>
         <activity android:name="com.example.tung_hoang_bmusic.auth.SignUpActivity"/>
         <activity android:name="com.example.tung_hoang_bmusic.activity.AddSongToPlaylist"/>
-
+        <activity
+            android:name="com.example.tung_hoang_bmusic.ui.chat.ChatActivity"
+            android:exported="false"/>
         <activity
             android:name="com.example.tung_hoang_bmusic.activity.MainActivity"
             android:label="@string/app_name"

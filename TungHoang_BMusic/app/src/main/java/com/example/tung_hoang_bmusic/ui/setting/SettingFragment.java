@@ -20,6 +20,7 @@ import androidx.fragment.app.Fragment;
 import com.example.tung_hoang_bmusic.R;
 import com.example.tung_hoang_bmusic.StorageUtil;
 import com.example.tung_hoang_bmusic.auth.AuthActivity;
+import com.example.tung_hoang_bmusic.ui.chat.ChatActivity;
 
 public class SettingFragment extends Fragment {
 
@@ -44,6 +45,16 @@ public class SettingFragment extends Fragment {
                 //HoangLD: nếu đang nhập rồi thì hiển thị giao diện quản lý tài khoản,
                 // còn chưa thì yêu cầu đăng nhập
                 Intent intent = new Intent(getActivity(), AuthActivity.class);
+                startActivity(intent);
+            }
+        });
+        //chat
+        LinearLayout managerChat = view.findViewById(R.id.line5);
+        managerChat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //HoangLD:
+                Intent intent = new Intent(getActivity(), ChatActivity.class);
                 startActivity(intent);
             }
         });
