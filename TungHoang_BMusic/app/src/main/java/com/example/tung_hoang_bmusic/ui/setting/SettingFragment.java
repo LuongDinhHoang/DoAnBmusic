@@ -20,7 +20,9 @@ import androidx.fragment.app.Fragment;
 import com.example.tung_hoang_bmusic.R;
 import com.example.tung_hoang_bmusic.StorageUtil;
 import com.example.tung_hoang_bmusic.auth.AuthActivity;
+import com.example.tung_hoang_bmusic.auth.HomeAuthActivity;
 import com.example.tung_hoang_bmusic.ui.chat.ChatActivity;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class SettingFragment extends Fragment {
 
@@ -54,8 +56,16 @@ public class SettingFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //HoangLD:
-                Intent intent = new Intent(getActivity(), ChatActivity.class);
-                startActivity(intent);
+                if (FirebaseAuth.getInstance().getCurrentUser() == null) {
+                    Intent intent = new Intent(getContext(), HomeAuthActivity.class);
+                    startActivity(intent);
+                    return;
+                }else
+                {
+                    Intent intent = new Intent(getActivity(), ChatActivity.class);
+                    startActivity(intent);
+                }
+
             }
         });
 
