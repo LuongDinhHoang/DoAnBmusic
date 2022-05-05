@@ -18,6 +18,8 @@ import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Random;
 
@@ -26,11 +28,13 @@ public class ChatActivity extends AppCompatActivity {
     private Firebase mFirebaseRef;
     private ValueEventListener mConnectedListener;
     private ChatListAdapter mChatListAdapter;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
+        mAuth = FirebaseAuth.getInstance();
 
         // Make sure we have a mUsername
         setupUsername();
@@ -96,12 +100,13 @@ public class ChatActivity extends AppCompatActivity {
     }
 
     private void setupUsername() {
+        FirebaseUser user = mAuth.getCurrentUser();
         SharedPreferences prefs = getApplication().getSharedPreferences("ChatPrefs", 0);
         mUsername = prefs.getString("username", null);
         if (mUsername == null) {
             Random r = new Random();
             // Assign a random user name if we don't have one saved.
-            mUsername = "JavaUser" + r.nextInt(100000);
+            mUsername = user.getEmail();
             prefs.edit().putString("username", mUsername).apply();
         }
     }
