@@ -27,6 +27,15 @@ public class Playlist implements RecyclerData {
         this.songList = songList;
     }
 
+    public Playlist(Album album) {
+        this.idCategory = album.getIdAlbum();
+        this.namePlaylist = album.getNameAlbum();
+        songList = new ArrayList<>();
+        for (Integer i : album.getSongList()) {
+            songList.add(new Song(i));
+        }
+    }
+
     public List<Song> getSongList() {
         return songList;
     }

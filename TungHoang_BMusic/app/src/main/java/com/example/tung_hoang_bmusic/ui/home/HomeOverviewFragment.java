@@ -1,9 +1,11 @@
 package com.example.tung_hoang_bmusic.ui.home;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -41,6 +43,14 @@ public class HomeOverviewFragment extends Fragment {
 
         @Override
         public void clickSong(Song song) {
+            if (TextUtils.isEmpty(song.getNameSong())
+                    && TextUtils.isEmpty(song.getSinger())
+                    && TextUtils.isEmpty(song.getDuration())
+                    && TextUtils.isEmpty(song.getLinkUrl())
+                    && TextUtils.isEmpty(song.getImageUrl())) {
+                Toast.makeText(getContext(), "Không thể mở bài hát do lỗi dữ liệu!!!", Toast.LENGTH_SHORT).show();
+                return;
+            }
             homeViewModel.setSongFirstClick(song);
         }
     };
@@ -50,7 +60,7 @@ public class HomeOverviewFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home_overview, container, false);
         mRecyclerView = root.findViewById(R.id.list_block_playlist_home);
-        mRecyclerView.setHasFixedSize(true);
+//        mRecyclerView.setHasFixedSize(true);
 
         mLinearLayout = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(mLinearLayout);

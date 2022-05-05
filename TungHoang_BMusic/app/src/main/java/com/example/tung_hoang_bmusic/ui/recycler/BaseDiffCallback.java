@@ -7,7 +7,8 @@ import java.util.List;
 
 public class BaseDiffCallback<T extends RecyclerData> extends DiffUtil.Callback {
 
-    private List<T> oldData, newData;
+    private final List<T> oldData;
+    private final List<T> newData;
 
     BaseDiffCallback(List<T> oldData, List<T> newData) {
         this.oldData = oldData;
@@ -26,11 +27,13 @@ public class BaseDiffCallback<T extends RecyclerData> extends DiffUtil.Callback 
 
     @Override
     public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
+        if (oldData.get(oldItemPosition) == null) return false;
         return oldData.get(oldItemPosition).areItemsTheSame(newData.get(newItemPosition));
     }
 
     @Override
     public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
+        if (oldData.get(oldItemPosition) == null) return false;
         return oldData.get(oldItemPosition).areContentsTheSame(newData.get(newItemPosition));
     }
 }

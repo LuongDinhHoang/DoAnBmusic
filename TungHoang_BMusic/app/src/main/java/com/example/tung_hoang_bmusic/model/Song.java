@@ -30,10 +30,15 @@ public class Song implements RecyclerData, Serializable {
     private String linkUrl;
     private String releaseDate;
 
-    @Exclude private boolean isOffline = false;
+    @Exclude
+    private boolean isOffline = false;
 
     public Song() {
         this(0, "", "", "", "", "", 0, "", "", "");
+    }
+
+    public Song(int id) {
+        this(id, "", "", "", "", "", 0, "", "", "");
     }
 
     public Song(int id, String nameSong, String pathSong, String singer, String albumID, String duration, int idCategory, String mImageUrl) {
@@ -152,6 +157,18 @@ public class Song implements RecyclerData, Serializable {
         return data == null ? null : BitmapFactory.decodeByteArray(data, 0, data.length);
     }
 
+    public void updateData(Song song) {
+        this.id = song.id;
+        this.nameSong = song.nameSong;
+        this.pathSong = song.pathSong;
+        this.singer = song.singer;
+        this.albumID = song.albumID;
+        this.duration = song.duration;
+        this.idCategory = song.idCategory;
+        this.imageUrl = song.imageUrl;
+        this.linkUrl = song.linkUrl;
+    }
+
     @Override
     public int getViewType() {
         return 0;
@@ -216,5 +233,6 @@ public class Song implements RecyclerData, Serializable {
         return isOffline;
     }
 
-    public void setOffline(){}
+    public void setOffline() {
+    }
 }
