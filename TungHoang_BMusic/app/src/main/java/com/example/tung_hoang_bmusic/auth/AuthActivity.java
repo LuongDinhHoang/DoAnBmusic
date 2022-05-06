@@ -57,20 +57,28 @@ public class AuthActivity extends AppCompatActivity {
         FirebaseUser user = mAuth.getCurrentUser();
         if (user != null) {
             StringBuilder sb = new StringBuilder();
-            sb.append("display name:");
+            sb.append("Thông tin người dùng : ");
+            sb.append("\n");
+            sb.append("\n");
+            sb.append("Tên người dùng : ");
             sb.append(user.getDisplayName());
             sb.append("\n");
-            sb.append("email:");
+            sb.append("\n");
+            sb.append("Email người dùng :  ");
             sb.append(user.getEmail());
             sb.append("\n");
-            sb.append("photo url:");
-            sb.append(user.getPhotoUrl());
             sb.append("\n");
-            sb.append("is email verified:");
+            sb.append("Xác thực :  ");
             sb.append(user.isEmailVerified());
             sb.append("\n");
-            sb.append("uid:");
+            sb.append("\n");
+            sb.append("ID :  ");
             sb.append(user.getUid());
+            sb.append("\n");
+            sb.append("\n");
+            sb.append("photo url :  ");
+            sb.append(user.getPhotoUrl());
+            sb.append("\n");
 
             TextView textUserInfo = findViewById(R.id.text_user_info);
             textUserInfo.setText(sb.toString());
@@ -96,21 +104,37 @@ public class AuthActivity extends AppCompatActivity {
     public void updateUserInfo(View view) {
         FirebaseUser user = mAuth.getCurrentUser();
         if (user != null) {
-            UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                    .setDisplayName("Ryan Hsueh")
-                    .setPhotoUri(Uri.parse("https://avatars1.githubusercontent.com/u/10694648?s=460&v=4"))
-                    .build();
+            final View layout = LayoutInflater.from(this).inflate(R.layout.dlg_update_name, null);
+            new AlertDialog.Builder(this)
+                    .setView(layout)
+                    .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            TextInputLayout tl_username = layout.findViewById(R.id.tl_updatename);
 
-            user.updateProfile(profileUpdates).addOnCompleteListener(new OnCompleteListener<Void>() {
-                @Override
-                public void onComplete(@NonNull Task<Void> task) {
-                    if (task.isSuccessful()) {
-                        Toast.makeText(AuthActivity.this, "User information updated successfully", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(AuthActivity.this, "User information update failed", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
+                            String email = tl_username.getEditText().getText().toString();
+                            UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                                    .setDisplayName(email)
+                                    .setPhotoUri(Uri.parse("https://avatars1.githubusercontent.com/u/10694648?s=460&v=4"))
+                                    .build();
+                            user.updateProfile(profileUpdates).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        Toast.makeText(AuthActivity.this, "User information updated successfully", Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        Toast.makeText(AuthActivity.this, "User information update failed", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+
+                            dialog.dismiss();
+                        }
+                    })
+                    .show();
+
+
+
         }
     }
 

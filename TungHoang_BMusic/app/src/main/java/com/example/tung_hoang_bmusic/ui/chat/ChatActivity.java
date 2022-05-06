@@ -102,12 +102,12 @@ public class ChatActivity extends AppCompatActivity {
     private void setupUsername() {
         FirebaseUser user = mAuth.getCurrentUser();
         SharedPreferences prefs = getApplication().getSharedPreferences("ChatPrefs", 0);
-        mUsername = prefs.getString("username", null);
+        //mUsername = prefs.getString("username", null);
         if (mUsername == null) {
             Random r = new Random();
             // Assign a random user name if we don't have one saved.
-            mUsername = user.getEmail();
-            prefs.edit().putString("username", mUsername).apply();
+            mUsername = user.getDisplayName();
+            //prefs.edit().putString("username", mUsername).apply();
         }
     }
 
