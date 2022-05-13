@@ -8,26 +8,36 @@ import android.util.Log;
 import androidx.annotation.CallSuper;
 import androidx.annotation.Nullable;
 
+import com.example.tung_hoang_bmusic.model.Playlist;
+import com.example.tung_hoang_bmusic.model.Song;
 import com.example.tung_hoang_bmusic.service.MediaPlaybackService;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.FirebaseError;
+import com.firebase.client.FirebaseException;
 import com.firebase.client.Query;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
+ * @param <T> The class type to use as a model for the data contained in the children of the given Firebase location
  * @author greg
  * @since 6/21/13
- *
+ * <p>
  * This class is a generic way of backing an Android ListView with a Firebase location.
  * It handles all of the child events at the given Firebase location. It marshals received data into the given
  * class type. Extend this class and provide an implementation of <code>populateView</code>, which will be given an
  * instance of your list item mLayout and an instance your class that holds your data. Simply populate the view however
  * you like and this class will handle updating the list as the data changes.
- *
- * @param <T> The class type to use as a model for the data contained in the children of the given Firebase location
  */
 public abstract class FirebaseListAdapter<T extends RecyclerData> extends BaseRecyclerAdapter<T> {
 
@@ -36,6 +46,7 @@ public abstract class FirebaseListAdapter<T extends RecyclerData> extends BaseRe
     private final List<T> mModels;
     private final List<String> mKeys;
     private final ChildEventListener mListener;
+    Gson gson = new Gson();
 
 
     /**
@@ -55,7 +66,34 @@ public abstract class FirebaseListAdapter<T extends RecyclerData> extends BaseRe
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String previousChildName) {
 
-                T model = dataSnapshot.getValue(FirebaseListAdapter.this.mModelClass);
+//                Type listType = new TypeToken<T>() {
+//                }.getType();
+//                T data = gson.fromJson(json, listType);
+                T model = null;
+                ;
+                try {
+                    model = dataSnapshot.getValue(FirebaseListAdapter.this.mModelClass);
+                } catch (FirebaseException e) {
+                    if (FirebaseListAdapter.this.mModelClass == Playlist.class) {
+                        Object object = dataSnapshot.getValue(Object.class);
+                        String json = gson.toJson(object);
+                        try {
+                            JSONObject jsonObject = new JSONObject(json);
+                            JSONObject songListJson = jsonObject.getJSONObject("songList");
+                            Iterator<String> iterator = songListJson.keys();
+                            List<Song> songList = new ArrayList<>();
+                            while (iterator.hasNext()) {
+                                JSONObject songJson = songListJson.getJSONObject(iterator.next());
+                                songList.add(gson.fromJson(String.valueOf(songJson), Song.class));
+                            }
+                            model = (T) new Playlist(jsonObject.getInt("idCategory"),
+                                    jsonObject.getString("namePlaylist"), songList);
+                        } catch (JSONException jsonException) {
+                            jsonException.printStackTrace();
+                            return;
+                        }
+                    }
+                }
                 String key = dataSnapshot.getKey();
 
                 // Insert into the correct location, based on previousChildName
@@ -168,4 +206,9 @@ public abstract class FirebaseListAdapter<T extends RecyclerData> extends BaseRe
         update(mModels);
     }
 
+    @Override
+    public void removeItem(int i) {
+        if (0 > i || i > mModels.size() - 1) return;
+        mRef.getRef().child(mKeys.get(i)).removeValue();
+    }
 }

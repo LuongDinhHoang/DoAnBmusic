@@ -40,7 +40,6 @@ public class DetailPlayListFragment extends Fragment {
     private RecyclerView mListSong;
     private TextView mNotifyEmpty;
     BaseRecyclerAdapter<Song> mAdapter;
-    private LinearLayout mAddSongInPlaylistButton;
 
     private ActivityViewModel mActivityViewModel;
     private LibraryViewModel mLibraryViewModel;
@@ -59,6 +58,20 @@ public class DetailPlayListFragment extends Fragment {
         public void clickSong(Song song) {
             super.clickSong(song);
         }
+
+        @Override
+        public void updateSongFromMenuButton(Song song, CONTROL_UPDATE state) {
+            super.updateSongFromMenuButton(song, state);
+            if (state == CONTROL_UPDATE.DELETE_SONG) {
+                List<Song> data = mAdapter.getData();
+                for (int j = 0, dataSize = data.size(); j < dataSize; j++) {
+                    Song i = data.get(j);
+                    if (i.areContentsTheSame(song)) {
+                        mAdapter.removeItem(j);
+                    }
+                }
+            }
+        }
     };
 
     @Nullable
@@ -67,7 +80,7 @@ public class DetailPlayListFragment extends Fragment {
         View root = inflater.inflate(R.layout.detail_playlist_fragment, container, false);
         mTitlePlayList = root.findViewById(R.id.title_playlist);
         mNotifyEmpty = root.findViewById(R.id.notify_empty);
-        mAddSongInPlaylistButton = root.findViewById(R.id.add_song_playlist_button);
+        LinearLayout mAddSongInPlaylistButton = root.findViewById(R.id.add_song_playlist_button);
 
         mListSong = root.findViewById(R.id.recycler_song_in_playlist);
         mListSong.setHasFixedSize(true);
@@ -80,15 +93,13 @@ public class DetailPlayListFragment extends Fragment {
             @Override
             public void onChanged(Playlist playlist) {
                 if (playlist != null) {
-                    mTitlePlayList.setText("Tên Playlist: "+playlist.getNamePlaylist());
-                    if(mAdapter.getItemCount() == 0){
+                    mTitlePlayList.setText("Tên Playlist: " + playlist.getNamePlaylist());
+                    if (mAdapter.getItemCount() == 0) {
                         mNotifyEmpty.setVisibility(View.VISIBLE);
                         mListSong.setVisibility(View.GONE);
-                        mAddSongInPlaylistButton.setVisibility(View.VISIBLE);
                         mNotifyEmpty.setText("Chưa có bài hát");
-                    }else{
+                    } else {
                         mNotifyEmpty.setVisibility(View.GONE);
-                        mAddSongInPlaylistButton.setVisibility(View.GONE);
                         mListSong.setVisibility(View.VISIBLE);
                         updateListSongInPlaylist(playlist.getSongList());
                         mActivityViewModel.setDetailPlaylist(null);
@@ -113,11 +124,9 @@ public class DetailPlayListFragment extends Fragment {
                 if (mAdapter.getItemCount() == 0) {
                     mNotifyEmpty.setVisibility(View.VISIBLE);
                     mListSong.setVisibility(View.GONE);
-                    mAddSongInPlaylistButton.setVisibility(View.VISIBLE);
                     mNotifyEmpty.setText("Chưa có bài hát");
                 } else {
                     mNotifyEmpty.setVisibility(View.GONE);
-                    mAddSongInPlaylistButton.setVisibility(View.GONE);
                     mListSong.setVisibility(View.VISIBLE);
                     mActivityViewModel.setDetailPlaylist(null);
                 }
@@ -140,7 +149,7 @@ public class DetailPlayListFragment extends Fragment {
     }
 
     public void updateListSongInPlaylist(List<Song> songs) {
-        if( songs.size() == 0 ){
+        if (songs.size() == 0) {
 
         }
         mAdapter.update(songs);
