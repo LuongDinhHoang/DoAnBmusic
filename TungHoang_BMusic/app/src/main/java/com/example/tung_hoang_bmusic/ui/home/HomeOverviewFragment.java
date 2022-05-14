@@ -65,6 +65,7 @@ public class HomeOverviewFragment extends Fragment {
         mLinearLayout = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(mLinearLayout);
 
+        // adapter hompage
         adapter = new BaseRecyclerAdapter<Playlist>(mRecyclerActionListener, ((MainActivity) getActivity()).getService()) {
             @Override
             public int getItemViewType(int position) {
